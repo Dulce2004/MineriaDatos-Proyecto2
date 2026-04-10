@@ -8,12 +8,18 @@ Integrantes:
 
 ## Descripción
 
-Este repositorio contiene el análisis exploratorio (EDA) y la limpieza inicial de un dataset de variables citológicas para un problema de clasificación binaria de tumores (benigno vs maligno). El flujo de trabajo está documentado y ejecutable en el notebook `Proyecto2.ipynb`.
+Este repositorio contiene el análisis exploratorio (EDA), limpieza, preparación de datos y el entrenamiento de modelos base para un problema de clasificación binaria de tumores (benigno vs maligno) a partir de variables citológicas.
+
+El flujo de trabajo está documentado y es ejecutable en dos notebooks:
+
+- `Proyecto2-S1.ipynb` (Semana 1): comprensión del problema, limpieza inicial y EDA.
+- `Proyecto2-S2.ipynb` (Semana 2): preparación de datos y modelos base con evaluación.
 
 ## Estructura del repositorio
 
 - `Datos.csv`: dataset en formato CSV.
-- `Proyecto2.ipynb`: notebook con limpieza y EDA.
+- `Proyecto2-S1.ipynb`: notebook de Semana 1 (EDA + limpieza).
+- `Proyecto2-S2.ipynb`: notebook de Semana 2 (preparación + modelos base).
 - `README.md`: documentación del proyecto.
 
 ## Dataset
@@ -21,7 +27,7 @@ Este repositorio contiene el análisis exploratorio (EDA) y la limpieza inicial 
 El archivo `Datos.csv` contiene:
 
 - Columna identificadora: `Sample code number` (se elimina antes del análisis/modelado por no aportar valor predictivo).
-- Variables predictoras (10):
+- Variables predictoras (9):
 	- `Clump Thickness`
 	- `Uniformity of Cell Size`
 	- `Uniformity of Cell Shape`
@@ -35,7 +41,7 @@ El archivo `Datos.csv` contiene:
 
 ## Limpieza de datos (resumen)
 
-En `Proyecto2.ipynb` se realiza:
+En `Proyecto2-S1.ipynb` se realiza:
 
 - Carga del dataset y revisión de estructura (`head()`, `info()`, `describe()`).
 - Inspección de valores atípicos/no numéricos en `Bare Nuclei` (en algunas versiones del dataset aparecen faltantes como `?`).
@@ -43,9 +49,15 @@ En `Proyecto2.ipynb` se realiza:
 - Conversión de `Class` a tipo numérico entero (garantiza valores 2/4).
 - Eliminación de `Sample code number`.
 
+En `Proyecto2-S2.ipynb` se retoma el dataset y se deja listo para modelar:
+
+- Separación de variables predictoras `X` y objetivo `y`.
+- Estandarización de características con `StandardScaler`.
+- Separación de entrenamiento/prueba con `train_test_split`.
+
 ## EDA (resumen)
 
-El notebook incluye:
+En `Proyecto2-S1.ipynb` se incluye:
 
 - Distribución de clases (conteos y porcentajes).
 - Histogramas de variables predictoras.
@@ -59,21 +71,36 @@ Hallazgos destacados (según la interpretación incluida en el notebook):
 - `Bare Nuclei`, `Uniformity of Cell Size` y `Uniformity of Cell Shape` muestran alta correlación con `Class` (~0.82).
 - `Mitoses` presenta la correlación más baja con `Class` (~0.42), indicando menor poder predictivo relativo.
 
+## Modelos base y métricas (Semana 2)
+
+En `Proyecto2-S2.ipynb` se entrenan y comparan modelos base:
+
+- Regresión logística (`LogisticRegression`)
+- Árbol de decisión (`DecisionTreeClassifier`)
+- Random Forest (`RandomForestClassifier`)
+
+Se reportan métricas de clasificación (con la clase positiva definida como `Class = 4`, es decir, maligno):
+
+- Accuracy, Precision, Recall, F1
+- Matriz de confusión (incluye visualización con heatmap)
+
 ## Requisitos y ejecución
 
-El notebook utiliza Python con las librerías:
+Los notebooks utilizan Python con las librerías:
 
 - `pandas`, `numpy`
 - `matplotlib`, `seaborn`
+- `scikit-learn`
 
 Para ejecutarlo localmente:
 
 1. Crear/activar un entorno virtual (opcional pero recomendado).
 2. Instalar dependencias.
-3. Abrir `Proyecto2.ipynb` y ejecutar las celdas en orden.
+3. Abrir `Proyecto2-S1.ipynb` y ejecutar las celdas en orden.
+4. Abrir `Proyecto2-S2.ipynb` y ejecutar las celdas en orden.
 
 Ejemplo con pip:
 
 ```bash
-pip install pandas numpy matplotlib seaborn
+pip install pandas numpy matplotlib seaborn scikit-learn
 ```
