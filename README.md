@@ -10,16 +10,18 @@ Integrantes:
 
 Este repositorio contiene el análisis exploratorio (EDA), limpieza, preparación de datos y el entrenamiento de modelos base para un problema de clasificación binaria de tumores (benigno vs maligno) a partir de variables citológicas.
 
-El flujo de trabajo está documentado y es ejecutable en dos notebooks:
+El flujo de trabajo está documentado y es ejecutable en tres notebooks:
 
 - `Proyecto2-S1.ipynb` (Semana 1): comprensión del problema, limpieza inicial y EDA.
 - `Proyecto2-S2.ipynb` (Semana 2): preparación de datos y modelos base con evaluación.
+- `Proyecto2-S3.ipynb` (Semana 3): mejora de modelos (validación cruzada, tuning) y selección del mejor modelo.
 
 ## Estructura del repositorio
 
 - `Datos.csv`: dataset en formato CSV.
 - `Proyecto2-S1.ipynb`: notebook de Semana 1 (EDA + limpieza).
 - `Proyecto2-S2.ipynb`: notebook de Semana 2 (preparación + modelos base).
+- `Proyecto2-S3.ipynb`: notebook de Semana 3 (mejora + selección de modelo).
 - `README.md`: documentación del proyecto.
 
 ## Dataset
@@ -84,6 +86,17 @@ Se reportan métricas de clasificación (con la clase positiva definida como `Cl
 - Accuracy, Precision, Recall, F1
 - Matriz de confusión (incluye visualización con heatmap)
 
+## Mejora de modelos y selección (Semana 3)
+
+En `Proyecto2-S3.ipynb` se amplía el enfoque para obtener una evaluación más robusta y mejorar el desempeño:
+
+- Validación cruzada estratificada (k-fold) para estimar el rendimiento de los modelos de forma más confiable.
+- Curvas de aprendizaje para analizar overfitting/underfitting (sesgo vs varianza).
+- Afinación de hiperparámetros con `GridSearchCV`.
+- Evaluación final en test set (Accuracy, Precision, Recall, F1 y AUC-ROC cuando aplica).
+- Matrices de confusión y curvas ROC para comparar modelos.
+- Selección del modelo priorizando **Recall** por el contexto médico (minimizar falsos negativos).
+
 ## Requisitos y ejecución
 
 Los notebooks utilizan Python con las librerías:
@@ -98,6 +111,7 @@ Para ejecutarlo localmente:
 2. Instalar dependencias.
 3. Abrir `Proyecto2-S1.ipynb` y ejecutar las celdas en orden.
 4. Abrir `Proyecto2-S2.ipynb` y ejecutar las celdas en orden.
+5. Abrir `Proyecto2-S3.ipynb` y ejecutar las celdas en orden.
 
 Ejemplo con pip:
 
